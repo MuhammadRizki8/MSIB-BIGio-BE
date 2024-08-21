@@ -28,3 +28,50 @@ class StoryCreate(BaseModel):
     status: StatusEnum
     chapters: Optional[List[ChapterCreate]] = []
     tags: Optional[List[TagCreate]] = []
+
+
+# Schema untuk menampilkan Chapter
+class Chapter(BaseModel):
+    id: int
+    title: str
+    content: str
+
+    class Config:
+        from_attributes = True
+
+# Schema untuk menampilkan Tag
+class Tag(BaseModel):
+    id: int
+    tag_name: str
+
+    class Config:
+        from_attributes = True
+
+# Schema untuk List Story dengan Tag
+class StoryList(BaseModel):
+    id: int
+    title: str
+    author: str
+    synopsis: Optional[str]
+    category: str
+    cover_image: Optional[str]
+    status: str
+    tags: List[Tag]  # Sertakan tags
+
+    class Config:
+        from_attributes = True
+
+# Schema untuk Detail Story dengan Tag dan Chapters
+class StoryDetail(BaseModel):
+    id: int
+    title: str
+    author: str
+    synopsis: Optional[str]
+    category: str
+    cover_image: Optional[str]
+    status: str
+    tags: List[Tag]  # Sertakan tags
+    chapters: List[Chapter]  # Sertakan chapters
+
+    class Config:
+        from_attributes = True
