@@ -7,6 +7,9 @@ class CategoryEnum(str, Enum):
     Financial = "Financial"
     Technology = "Technology"
     Health = "Health"
+    Fantasy = "Fantasy"
+    Sport = "Sport"
+    Culture = "Culture"
 
 class StatusEnum(str, Enum):
     Publish = "Publish"
@@ -83,12 +86,19 @@ class ChapterBase(BaseModel):
 class TagBase(BaseModel):
     tag_name: str
 
+class ChapterUpdate(BaseModel):
+    title: str
+    content: str
+
+class TagUpdate(BaseModel):
+    tag_name: str
+
 class StoryUpdate(BaseModel):
     title: str
     author: str
-    synopsis: str
-    category: str
-    cover_image: str
-    status: str
-    tags: List[TagBase]  # List of tags to be added
-    chapters: List[ChapterBase]  # List of chapters to be added
+    synopsis: Optional[str]
+    category: CategoryEnum
+    cover_image: Optional[str]
+    status: StatusEnum
+    chapters: List[ChapterUpdate]
+    tags: List[TagUpdate]
