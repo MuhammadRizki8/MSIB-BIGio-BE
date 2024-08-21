@@ -75,3 +75,20 @@ class StoryDetail(BaseModel):
 
     class Config:
         from_attributes = True
+        
+class ChapterBase(BaseModel):
+    title: str
+    content: str
+
+class TagBase(BaseModel):
+    tag_name: str
+
+class StoryUpdate(BaseModel):
+    title: str
+    author: str
+    synopsis: str
+    category: str
+    cover_image: str
+    status: str
+    tags: List[TagBase]  # List of tags to be added
+    chapters: List[ChapterBase]  # List of chapters to be added
